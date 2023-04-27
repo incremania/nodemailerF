@@ -51,7 +51,9 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL,
-    pass: process.env.EMAIL_APP_PASSWORD
+    pass: process.env.PASS
+    // user: 'imperialtotalsolution@gmail.com',
+    // pass: 'smzbqszggkvtuhgd'
   }
 });
 
@@ -60,8 +62,8 @@ app.post('/submit', async (req, res) => {
 
   try {
     const mailOptions = {
-      from: 'companychris00@gmail.com',
-      to: 'companychris00@gmail.com',
+      from: process.env.EMAIL,
+      to: process.env.EMAIL,
       subject: 'New registration',
       html: `<p>name: ${name}</p>\n<p>user-email: ${userEmail}</p>\n<p>subject: ${subject}</p>\n<p>message: ${message}</p>\n<p>phone Number: ${phoneNumber}</p>`
     };
@@ -69,6 +71,7 @@ app.post('/submit', async (req, res) => {
     await transporter.sendMail(mailOptions);
 
     res.json({ success: true });
+    console.log('sent successfully')
   } catch (error) {
     console.error(error);
 
@@ -80,6 +83,7 @@ app.get('/long', (req, res) => {
     res.json('hello  json')
 })
 
-app.listen('3000', () => {
+const port = process.env.PORT || 3000
+app.listen(port, () => {
     console.log('hello its been a while')
 })
