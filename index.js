@@ -56,14 +56,14 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/submit', async (req, res) => {
-  const { name, userEmail, subject, message } = req.body;
+  const { name, userEmail, subject, message, phoneNumber} = req.body;
 
   try {
     const mailOptions = {
       from: 'companychris00@gmail.com',
       to: 'companychris00@gmail.com',
       subject: 'New registration',
-      html: `<p>name: ${name}</p>\n<p>user-email: ${userEmail}</p>\n<p>subject: ${subject}</p>\n<p>message: ${message}</p>`
+      html: `<p>name: ${name}</p>\n<p>user-email: ${userEmail}</p>\n<p>subject: ${subject}</p>\n<p>message: ${message}</p>\n<p>phone Number: ${phoneNumber}</p>`
     };
 
     await transporter.sendMail(mailOptions);
