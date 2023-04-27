@@ -5,6 +5,7 @@ if(process.env.NODE_ENV !== 'production'){
 const express =  require('express');
 const app = express();
 app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
 const nodemailer = require('nodemailer');
 
@@ -23,8 +24,8 @@ app.post('/submit', async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL,
       to: process.env.EMAIL,
-      subject: 'New registration',
-      html: `<p>name: ${name}</p>\n<p>user-email: ${userEmail}</p>\n<p>subject: ${subject}</p>\n<p>message: ${message}</p>\n<p>phone Number: ${phoneNumber}</p>`
+      subject: 'Message from Imperial Total Solutions',
+      html: `<p>Name: ${name}</p>\n<p>Client Email: ${userEmail}</p>\n<p>subject: ${subject}</p>\n<p>Client Message: ${message}</p>\n<p>Client Phone Number: ${phoneNumber}</p>`
     };
 
     await transporter.sendMail(mailOptions);
