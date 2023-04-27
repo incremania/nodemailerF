@@ -38,11 +38,8 @@ app.post('/submit', async (req, res) => {
   }
 });
 
-app.get('/long', (req, res) => {
-    res.json('hello  json')
-})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-    console.log('hello its been a while')
+    console.log('running')
 })
